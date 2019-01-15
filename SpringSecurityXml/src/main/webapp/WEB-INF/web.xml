@@ -3,9 +3,6 @@
 		<welcome-file>index</welcome-file>
 	</welcome-file-list>
 
-	<!-- <listener> -->
-	<!-- <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> -->
-	<!-- </listener> -->
 	<!-- Front Controller -->
 	<servlet>
 		<servlet-name>dispatcherServlet</servlet-name>
@@ -17,4 +14,16 @@
 		<url-pattern>/</url-pattern>
 		<url-pattern>/index</url-pattern>
 	</servlet-mapping>
+	
+	<!-- FOR SPRING SECURITY -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- LOADING SPRING SECURITY CONFIG FILE -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring-security.xml</param-value>
+	</context-param>
+	
 </web-app>

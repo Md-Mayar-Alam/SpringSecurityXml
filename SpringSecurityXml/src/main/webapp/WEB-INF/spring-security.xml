@@ -1,0 +1,29 @@
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/security
+						http://www.springframework.org/schema/security/spring-security.xsd"
+>
+	<!-- DO NOT APPLY SECURITY ON THESE URL -->
+	<security:http pattern="/js/**" security="none" />
+	<security:http pattern="/stylesheets/**" security="none" />
+	
+	<security:http auto-config="true">
+		<security:intercept-url pattern="/**" access="ROLE_USER"/>
+		
+		<security:form-login login-page="/login"
+			login-processing-url="/j_spring_security_check"
+			authentication-failure-handler-ref="loginAuthenticationFailureHandler"
+			authentication-success-handler-ref="loginAuthenticationSuccessHandler"
+			username-parameter="j_username"
+			password-parameter="j_password"
+		/>
+		
+		<security:logout logout-url="/logout"
+			success-handler-ref="logoutSuccessHandler"/>
+	</security:http>
+	
+</beans>
